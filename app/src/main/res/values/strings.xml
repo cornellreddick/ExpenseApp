@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ExpenseTrackingApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="numOfRecordLabel">No. of Records</string>
+    <string name="totalExpensesLabel">Total Expenses</string>
+    <string name="numOfRecordsResultsLabel">0</string>
+    <string name="totalExpensesResultsLabel">$0.00</string>
+    <string name="expensesSumBtnLabel">Expenses Summary</string>
+    <string name="addExpenseBtnLabel">Add Expense</string>
+    <string name="expenseNameLabel">McDonalds</string>
+    <string name="expenseAmountLabel">$11.25</string>
+    <string name="expenseDateLabel">02/03/2022</string>
+    <string name="expenseCatLabel">(Food)</string>
+
+
+</resources>

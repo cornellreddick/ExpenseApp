@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+
+        <ImageView
+            android:id="@+id/imageViewDelete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewExpenseAmount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_trash" />
+
+        <TextView
+            android:id="@+id/textViewExpenName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/expenseNameLabel"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewDelete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewExpenseAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/expenseAmountLabel"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewDelete"
+            app:layout_constraintStart_toStartOf="@+id/textViewExpenName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewExpenName" />
+
+        <TextView
+            android:id="@+id/textViewExpenseDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/expenseDateLabel"
+            app:layout_constraintEnd_toStartOf="@+id/textViewExpenseCat"
+            app:layout_constraintStart_toStartOf="@+id/textViewExpenseAmount"
+            app:layout_constraintTop_toBottomOf="@+id/textViewExpenseAmount" />
+
+        <TextView
+            android:id="@+id/textViewExpenseCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expenseCatLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewExpenseDate"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
