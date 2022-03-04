@@ -24,7 +24,7 @@ import com.example.expensetrackingapplication.databinding.FragmentAddExpenseBind
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AddExpenseFragment extends Fragment implements MainActivity.AddItem {
+public class AddExpenseFragment extends Fragment{
     FragmentAddExpenseBinding binding;
     EditText expName, expAmount;
     TextView expDateTV, expCatTV, tv5;
@@ -32,6 +32,7 @@ public class AddExpenseFragment extends Fragment implements MainActivity.AddItem
     ArrayList<Expense> expenses;
     Button pickCatogoryBtn, cancelBtn, submitBtn;
     String pickCat;
+    String pickDate;
     ArrayAdapter  arrayAdapter;
     ExpenseAdapter expenseAdapter;
 
@@ -45,7 +46,7 @@ public class AddExpenseFragment extends Fragment implements MainActivity.AddItem
     private static final String ARG_PARAM1 = "param1";
     private String pickCategory;
 
-    public static AddExpenseFragment newInstance(String pickCat) {
+    public static AddExpenseFragment newInstance(String pickCat ) {
         AddExpenseFragment fragment = new AddExpenseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, pickCat);
@@ -106,18 +107,19 @@ public class AddExpenseFragment extends Fragment implements MainActivity.AddItem
         binding.addExpSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 if (expDateTV.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Please select date!!", Toast.LENGTH_SHORT).show();
-
-                } else if (expCatTV.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Please select Category!!", Toast.LENGTH_SHORT).show();
-
-                }
-                else if (expName.getText().toString().matches("")) {
+                } else if (expName.getText().toString().matches("")) {
                     Toast.makeText(getActivity(), "Please select Task name!!", Toast.LENGTH_SHORT).show();
                 }else if (expAmount.getText().toString().matches("")) {
                     Toast.makeText(getActivity(), "Please select Task name!!", Toast.LENGTH_SHORT).show();
                 }else{
+                   if (!expDateTV.getText().toString().equals("") && !expName.getText().toString().matches("") && !expAmount.getText().toString().matches("")){
+                       pickCatogoryBtn.setEnabled(true);
+                   }
+
                     String date = expDateTV.getText().toString();
                     String cat = expCatTV.getText().toString();
                     String name = expName.getText().toString();
@@ -125,12 +127,8 @@ public class AddExpenseFragment extends Fragment implements MainActivity.AddItem
                     String amount = expAmount.getText().toString();
                     double amt = Double.parseDouble(amount);
 
-                    expenses.add(new Expense(name, amt, date, cat));
-                    addToList(name, amt, date, cat);
-                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.cv, new ExpensesFragment())
-                            .addToBackStack(null)
-                            .commit();
+                    addExpenseFragmentListener.goToExpenseFragment(name, amt, date, cat);
+                    //expenses.add(new Expense(name, amt, date, cat));
                 }
             }
         });
@@ -139,32 +137,27 @@ public class AddExpenseFragment extends Fragment implements MainActivity.AddItem
         pickCatogoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // addExpenseFragmentListener.goToPickCat();
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.cv, new PickCategoryFragment())
-                        .addToBackStack(null)
-                        .commit();
-
+            addExpenseFragmentListener.goToPickCat();
             }
         });
     }
-   // AddExpenseFragmentListener addExpenseFragmentListener;
-
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        addExpenseFragmentListener = (AddExpenseFragmentListener) context;
-//    }
-//    interface AddExpenseFragmentListener{
-//        void goToPickCat();
-//        void goToExpenseFragment();
-//    }
+    AddExpenseFragmentListener addExpenseFragmentListener;
 
     @Override
-    public void addToList(String name, double amount, String date, String category) {
-        expenses.add(new Expense(name, amount, date, category));
-        expenseAdapter.notifyDataSetChanged();
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        addExpenseFragmentListener = (AddExpenseFragmentListener) context;
     }
+    interface AddExpenseFragmentListener{
+        void goToExpenseFragment(String name, double amount, String date, String category);
+        void  goToPickCat();
+    }
+
+//    @Override
+//    public void addToList(String name, double amount, String date, String category) {
+//        expenses.add(new Expense(name, amount, date, category));
+//        expenseAdapter.notifyDataSetChanged();
+//    }
 
 
 }

@@ -8,9 +8,10 @@ import com.example.expensetrackingapplication.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ExpensesFragment.ExpenseListener, PickCategoryFragment.PickCatogoryListener {
+public class MainActivity extends AppCompatActivity implements ExpensesFragment.ExpenseListener, PickCategoryFragment.PickCatogoryListener, AddExpenseFragment.AddExpenseFragmentListener {
     ActivityMainBinding binding;
     ArrayList<Expense> expenses;
+    ExpenseAdapter expenseAdapter;
     public static int deletePos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,16 @@ public class MainActivity extends AppCompatActivity implements ExpensesFragment.
     }
 
     @Override
+    public void goToExpenseFragment(String name, double amount, String date, String category) {
+        expenses.add(new Expense(name, amount, date, category));
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.cv, ExpensesFragment.newInstance(expenses), "expense-fragment")
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
     public void goToAddExpense() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.cv, new AddExpenseFragment())
@@ -40,21 +51,16 @@ public class MainActivity extends AppCompatActivity implements ExpensesFragment.
                 .commit();
     }
 
-//    @Override
-//    public void goToPickCat() {
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.cv, new PickCategoryFragment())
-//                .addToBackStack(null)
-//                .commit();
-//    }
+    @Override
+    public void goToPickCat() {
 
-//    @Override
-//    public void goToExpenseFragment() {
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.cv, new ExpensesFragment())
-//                .addToBackStack(null)
-//                .commit();
-//    }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.cv, new PickCategoryFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+
 
     @Override
     public void goToAddExp(String selectCat) {
@@ -63,8 +69,4 @@ public class MainActivity extends AppCompatActivity implements ExpensesFragment.
                 .addToBackStack(null)
                 .commit();
     }
-    interface AddItem{
-        void addToList(String name, double amount, String date, String category);
-    }
-
 }

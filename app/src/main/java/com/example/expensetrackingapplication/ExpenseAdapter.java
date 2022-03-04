@@ -50,7 +50,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         return this.expenses.size();
     }
 
-   public static class ExpenseViewHolder extends RecyclerView.ViewHolder {
+    public static class ExpenseViewHolder extends RecyclerView.ViewHolder {
         TextView textViewExpenName, textViewExpenseAmount, textViewExpenseDate, textViewExpenseCat, numRecordTextViewResults;
         ImageView deleteImageView;
         int pos;
