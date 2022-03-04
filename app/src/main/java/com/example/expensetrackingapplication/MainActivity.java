@@ -8,9 +8,10 @@ import com.example.expensetrackingapplication.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ExpensesFragment.ExpenseListener, PickCategoryFragment.PickCatogoryListener {
     ActivityMainBinding binding;
     ArrayList<Expense> expenses;
+    public static int deletePos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,39 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void goToAddExpense() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.cv, new AddExpenseFragment())
+                .addToBackStack(null)
+                .commit();
+    }
 
+//    @Override
+//    public void goToPickCat() {
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.cv, new PickCategoryFragment())
+//                .addToBackStack(null)
+//                .commit();
+//    }
+
+//    @Override
+//    public void goToExpenseFragment() {
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.cv, new ExpensesFragment())
+//                .addToBackStack(null)
+//                .commit();
+//    }
+
+    @Override
+    public void goToAddExp(String selectCat) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.cv, AddExpenseFragment.newInstance(selectCat))
+                .addToBackStack(null)
+                .commit();
+    }
+    interface AddItem{
+        void addToList(String name, double amount, String date, String category);
+    }
 
 }

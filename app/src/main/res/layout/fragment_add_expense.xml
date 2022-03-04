@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddExpenseFragment">
+    tools:context=".AddExpenseFragment"
+    android:padding="20dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/editTextExpName"
+        android:layout_width="279dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:hint="@string/addExpNameHint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextExpAmt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/addExpAmtHint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextExpName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextExpName" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="33dp"
+        android:text="@string/addExpNameLabel"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="57dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/addExpAmtLabel"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/addExpDateLabel"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/addExpACatLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/setExpDateBtn"
+        android:layout_width="152dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/setExpDateBtn"
+        app:layout_constraintEnd_toEndOf="@+id/editTextExpAmt"
+        app:layout_constraintTop_toBottomOf="@+id/editTextExpAmt" />
+
+    <Button
+        android:id="@+id/pickExpCatBtn"
+        android:layout_width="153dp"
+        android:layout_height="42dp"
+        android:text="@string/pickExpCateBtn"
+        app:layout_constraintEnd_toEndOf="@+id/setExpDateBtn"
+        app:layout_constraintTop_toBottomOf="@+id/setExpDateBtn" />
+
+    <Button
+        android:id="@+id/addExpCancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/cancelBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addExpSubmitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submitBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/addDateTextViewResults"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/addExpDateResults"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/setExpDateBtn"
+        app:layout_constraintStart_toStartOf="@+id/editTextExpAmt" />
+
+    <TextView
+        android:id="@+id/addCatTextViewResults"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/addExpCateResults"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/pickExpCatBtn"
+        app:layout_constraintStart_toStartOf="@+id/addDateTextViewResults"
+        tools:text="@string/addExpCateResults" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

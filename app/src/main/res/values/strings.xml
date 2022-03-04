@@ -13,5 +13,19 @@
     <string name="expenseDateLabel">02/03/2022</string>
     <string name="expenseCatLabel">(Food)</string>
 
+    <string name="addExpNameLabel">Name:</string>
+    <string name="addExpAmtLabel">Amount:</string>
+    <string name="addExpDateLabel">Date:</string>
+    <string name="addExpACatLabel">Category:</string>
+    <string name="addExpNameHint">Expense Name</string>
+    <string name="addExpAmtHint">Expense amount</string>
+    <string name="addExpDateResults">None</string>
+    <string name="addExpCateResults">None</string>
+    <string name="setExpDateBtn">Set Date</string>
+    <string name="pickExpCateBtn">Pick Category</string>
+    <string name="cancelBtn">Cancel</string>
+    <string name="submitBtn">Submit</string>
+
+
 
 </resources>

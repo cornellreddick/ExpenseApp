@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.expensetrackingapplication.databinding.FragmentExpensesBinding;
@@ -26,21 +27,10 @@ public class ExpensesFragment extends Fragment {
     LinearLayoutManager layoutManager;
     RecyclerView recycleView;
     TextView numRecordTextViewResults, totalExpenseTextView;
+    Button addExpenseBtn, expensesSumBtn;
     protected RecyclerView.LayoutManager mLayoutManager;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "expense";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    public ExpensesFragment() {
-        // Required empty public constructor
-    }
-
 
     public static ExpensesFragment newInstance(ArrayList<Expense> expenses) {
         ExpensesFragment fragment = new ExpensesFragment();
@@ -49,7 +39,6 @@ public class ExpensesFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,19 +63,15 @@ public class ExpensesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         expenses = (ArrayList<Expense>) getArguments().getSerializable(ARG_PARAM1);
 
-
-
         numRecordTextViewResults = binding.numRecordTextViewResults;
         numRecordTextViewResults.setText(String.valueOf(expenses.size()));
 
         totalExpenseTextView = binding.totalExpenseTextView;
-
         //Get Totol Expense Amount
         double sum = 0;
         for (Expense expenses: expenses) {
            sum += expenses.expenseAmount;
         }
-
         totalExpenseTextView.setText(String.valueOf("$" + sum));
 
         recycleView = binding.recycleView;
@@ -94,6 +79,18 @@ public class ExpensesFragment extends Fragment {
         recycleView.setLayoutManager(layoutManager);
         expenseAdapter = new ExpenseAdapter(expenses);
         recycleView.setAdapter(expenseAdapter);
+
+        addExpenseBtn = binding.addExpenseBtn;
+        expensesSumBtn = binding.expensesSumBtn;
+
+        addExpenseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expenseListener.goToAddExpense();
+            }
+        });
+
+
     }
 
     @Override
@@ -102,16 +99,15 @@ public class ExpensesFragment extends Fragment {
         getActivity().setTitle("Expenses");
     }
 
-//    ExpenseLister expenseLister;
-//
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        expenseLister = (ExpenseLister) context;
-//    }
-//
-//    interface ExpenseLister{
-//        ArrayList<Expense> getData(ArrayList<Expense> data);
-//    }
+    ExpenseListener expenseListener;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        expenseListener = (ExpenseListener) context;
+    }
+
+    interface ExpenseListener{
+        void goToAddExpense();
+    }
 }
