@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Project/ExpenseTrackingApplication/app/src/main/res/layout/activity_main.xml" value="0.3494791666666667" />
         <entry key="..\:/Project/ExpenseTrackingApplication/app/src/main/res/layout/expense_lists_layout.xml" value="0.5" />
+        <entry key="..\:/Project/ExpenseTrackingApplication/app/src/main/res/layout/expense_summary_list.xml" value="0.38333333333333336" />
         <entry key="..\:/Project/ExpenseTrackingApplication/app/src/main/res/layout/fragment_add_expense.xml" value="0.3494791666666667" />
         <entry key="..\:/Project/ExpenseTrackingApplication/app/src/main/res/layout/fragment_expenses.xml" value="0.5" />
         <entry key="..\:/Project/ExpenseTrackingApplication/app/src/main/res/layout/fragment_expenses_summary.xml" value="0.3494791666666667" />

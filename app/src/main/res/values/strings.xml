@@ -26,6 +26,10 @@
     <string name="cancelBtn">Cancel</string>
     <string name="submitBtn">Submit</string>
 
+    <string name="month">January</string>
+    <string name="year">2022</string>
+    <string name="amount">$0.00</string>
+
 
 
 </resources>

@@ -36,7 +36,14 @@ public class MainActivity extends AppCompatActivity implements ExpensesFragment.
     @Override
     public void goToExpenseFragment(String name, double amount, String date, String category) {
         expenses.add(new Expense(name, amount, date, category));
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.cv, ExpensesFragment.newInstance(expenses), "expense-fragment")
+                .addToBackStack(null)
+                .commit();
+    }
 
+    @Override
+    public void goToExpens() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.cv, ExpensesFragment.newInstance(expenses), "expense-fragment")
                 .addToBackStack(null)
@@ -47,6 +54,15 @@ public class MainActivity extends AppCompatActivity implements ExpensesFragment.
     public void goToAddExpense() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.cv, new AddExpenseFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void goToExpSummary(ArrayList<Expense> expense) {
+        expenses = expense;
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.cv,ExpensesSummaryFragment.newInstance(expense))
                 .addToBackStack(null)
                 .commit();
     }

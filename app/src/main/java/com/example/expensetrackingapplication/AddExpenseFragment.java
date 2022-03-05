@@ -140,6 +140,19 @@ public class AddExpenseFragment extends Fragment{
             addExpenseFragmentListener.goToPickCat();
             }
         });
+
+        cancelBtn = binding.addExpCancelBtn;
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            addExpenseFragmentListener.goToExpens();
+            }
+        });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Add New Expense");
     }
     AddExpenseFragmentListener addExpenseFragmentListener;
 
@@ -150,14 +163,8 @@ public class AddExpenseFragment extends Fragment{
     }
     interface AddExpenseFragmentListener{
         void goToExpenseFragment(String name, double amount, String date, String category);
+        void goToExpens();
         void  goToPickCat();
     }
-
-//    @Override
-//    public void addToList(String name, double amount, String date, String category) {
-//        expenses.add(new Expense(name, amount, date, category));
-//        expenseAdapter.notifyDataSetChanged();
-//    }
-
 
 }

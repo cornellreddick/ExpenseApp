@@ -89,6 +89,12 @@ public class ExpensesFragment extends Fragment {
                 expenseListener.goToAddExpense();
             }
         });
+        expensesSumBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expenseListener.goToExpSummary(expenses);
+            }
+        });
 
 
     }
@@ -109,5 +115,6 @@ public class ExpensesFragment extends Fragment {
 
     interface ExpenseListener{
         void goToAddExpense();
+        void goToExpSummary(ArrayList<Expense> expenses);
     }
 }
